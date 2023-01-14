@@ -11,7 +11,7 @@ function Shows() {
     const [items, setItems] = useState();
 
     useEffect(() => {
-        fetch("/api/shows")
+        fetch("https://atreyo-api.onrender.com/api/shows")
         .then(res => res.json())
         .then(
             (result) => {
