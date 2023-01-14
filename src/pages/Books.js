@@ -11,7 +11,7 @@ function Books() {
     const [items, setItems] = useState();
 
     useEffect(() => {
-        fetch("/api/books")
+        fetch("https://atreyo-api.onrender.com/api/books")
         .then(res => res.json())
         .then(
             (result) => {
