@@ -11,7 +11,7 @@ function Movies() {
     const [items, setItems] = useState();
 
     useEffect(() => {
-        fetch("https://atreyo-api.onrender.com/api/movies")
+        fetch("/api/movies")
         .then(res => res.json())
         .then(
             (result) => {
