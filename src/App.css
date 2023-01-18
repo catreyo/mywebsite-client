@@ -1,4 +1,21 @@
 .body {
-    font-family: 'Sofia Sans', sans-serif;
+    font-family: 'Roboto Mono', monospace;
     color: white;
+}
+
+.nav {
+    font-family: 'Roboto Mono', monospace;
+}
+
+.logo {
+    width: 300px;
+    transition: transform 2s;
+}
+
+.logo:hover {
+    transform: scale(2);
+}
+
+.tmdb {
+    width: 200px;
 }

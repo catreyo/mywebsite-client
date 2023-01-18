@@ -5,8 +5,8 @@ import Navbar from 'react-bootstrap/Navbar';
 function Navigation() {
   return (
     <>
-      <Navbar bg="dark" variant="dark" style={{fontFamily: '"Sofia Sans", sans-serif'}}>
-        <Container>
+      <Navbar bg="dark" variant="dark">
+        <Container className='nav'>
           <Navbar.Brand href="/">Atreyo Chakrabarty</Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
