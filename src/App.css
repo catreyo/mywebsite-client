@@ -9,11 +9,6 @@
 
 .logo {
     width: 300px;
-    transition: transform 2s;
-}
-
-.logo:hover {
-    transform: scale(2);
 }
 
 .tmdb {
