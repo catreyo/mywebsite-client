@@ -11,6 +11,7 @@ function Shows() {
     const [items, setItems] = useState();
 
     useEffect(() => {
+        // Change to /api/shows after development
         fetch("/api/shows")
         .then(res => res.json())
         .then(
@@ -33,11 +34,9 @@ function Shows() {
         return (
           <Container className='body'>
             <Row xs={1} md={2} className="g-4" style={{marginTop: '10px'}}>
-                {items.data.map(item => (
-                    <Col>
-                      <MediaCard key={item.title} data={item} type='show'></MediaCard>
-                    </Col>
-                ))}
+                {items.map(element => {
+                    return <Col key={'col'+element.id}><MediaCard key={element.id} data={element}/></Col>
+                })}
             </Row>
           </Container>
         );

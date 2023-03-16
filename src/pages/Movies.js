@@ -8,10 +8,11 @@ function Movies() {
     document.body.style = 'background: black;';
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
-    const [items, setItems] = useState();
+    const [items, setItems] = useState([]);
 
     useEffect(() => {
-        fetch("/api/movies")
+        // Change to /api/movies after development
+        fetch("http://localhost:4000/movies")
         .then(res => res.json())
         .then(
             (result) => {
@@ -33,11 +34,9 @@ function Movies() {
         return (
           <Container className='body'>
             <Row xs={1} md={2} className="g-4" style={{marginTop: '10px'}}>
-                {items.data.map(item => (
-                    <Col>
-                      <MediaCard key={item.title} data={item} type='movie'></MediaCard>
-                    </Col>
-                ))}
+                {items.map(element => {
+                    return <Col key={'col'+element.id}><MediaCard key={element.id} data={element}/></Col>
+                })}
             </Row>
           </Container>
         );
