@@ -1,7 +1,6 @@
 import Card from 'react-bootstrap/Card';
-import StarRatingComponent from 'react-star-rating-component';
 
-function MovieCard({ data }) {
+function BookCard({ data }) {
     return (
         <Card border='light' bg='dark' style={{
             width: '100%',
@@ -18,16 +17,10 @@ function MovieCard({ data }) {
                 <Card.Title>{data.title} ({data.year})</Card.Title>
                 <Card.Subtitle style={{fontStyle: 'italic', fontSize: '90%'}}>{data.author}</Card.Subtitle>
                 <hr></hr>
-                <Card.Text style={{color: '#a4a5a6'}}>I rate this book a {data.rating}/10:</Card.Text>
-                <Rating
-                    readonly={true}
-                    initialRating={data.rating}
-                    stop={10}
-                    fractions={1}
-                />
+                <Card.Text style={{color: '#a4a5a6'}}>My rating: <strong>{data.rating}</strong>/10</Card.Text>
             </Card.Body>
         </Card>
     );
 }
 
-export default MovieCard;
+export default BookCard;

@@ -1,29 +1,39 @@
 import Card from 'react-bootstrap/Card';
+import Placeholder from 'react-bootstrap/Placeholder';
 import React, { useEffect, useState } from 'react';
-import Rating from 'react-rating'
 
-function MediaCard({ data }) {
+function MediaCard({ data, type }) {
     const [movieData, setMovieData] = useState({});
     const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
-        fetch(`https://api.themoviedb.org/3/movie/${data.id}`, {
+        fetch(`https://api.themoviedb.org/3/${type}/${data.id}`, {
             headers: new Headers({
                 Authorization: 'Bearer ' + process.env.REACT_APP_TMDB_BEARER
             })
         })
         .then(res => res.json())
         .then(json => {
-            const movie = {
-                title: json.title,
-                year: json.release_date.split('-')[0],
-                image: 'https://image.tmdb.org/t/p/w500' + json.poster_path,
+            let media;
+            if(type === 'movie'){
+                media = {
+                    title: json.title,
+                    year: json.release_date.split('-')[0],
+                    image: 'https://image.tmdb.org/t/p/w500' + json.poster_path,
+                }
+            } else if(type === 'tv'){
+                media = {
+                    title: json.name,
+                    year: json.first_air_date.split('-')[0],
+                    image: 'https://image.tmdb.org/t/p/w500' + json.poster_path,
+                }
+            } else {
+                console.log('Invalid type!')
             }
-            console.log(movie);
+            setMovieData(media);
             setIsLoaded(true);
-            setMovieData(movie);
         })
-    }, [data.id])
+    }, [data.id, type])
 
     if(isLoaded){
         return (
@@ -41,15 +51,14 @@ function MediaCard({ data }) {
                 <Card.Body>
                     <Card.Title>{movieData.title}</Card.Title>
                     <hr></hr>
-                    <Card.Text style={{color: '#a4a5a6'}}>
-                        Overall score: {data.score.toFixed(2)}
+                    <Card.Text style={{color: '#c5c7c9'}}>
+                        Overall score: <strong>{data.score.toFixed(2)}</strong>/10
                     </Card.Text>
-                    <Rating
-                        readonly={true}
-                        initialRating={data.score}
-                        stop={10}
-                        fractions={3}
-                    />
+                    <Card.Text style={{color: '#a4a5a6', fontSizeAdjust: '0.5'}}>
+                        Visual sub-score: <strong>{data.visuals}</strong>/10<br/>
+                        Plot sub-score: <strong>{data.plot}</strong>/10<br/>
+                        Enjoyment sub-score: <strong>{data.enjoyment}</strong>/10<br/>
+                    </Card.Text>
                 </Card.Body>
             </Card>
         );
@@ -59,7 +68,22 @@ function MediaCard({ data }) {
                 width: '100%',
                 color: 'white',
                 flexDirection: 'row'
-            }}>                
+            }}>
+                <Card.Img style={{
+                    width: 'calc(200px / 1.5)',
+                    height: '200px',
+                    borderTopRightRadius: '0px',
+                    borderBottomRightRadius: '0px'
+                }}/>
+                <Card.Body>
+                <Placeholder as={Card.Title} animation="glow">
+                    <Placeholder xs={6} />
+                </Placeholder>
+                <Placeholder as={Card.Text} animation="glow">
+                    <Placeholder xs={7} /> <Placeholder xs={4} /> <Placeholder xs={4} />{' '}
+                    <Placeholder xs={6} /> <Placeholder xs={8} />
+                </Placeholder>
+                </Card.Body>
             </Card>
         );
     }

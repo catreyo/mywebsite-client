@@ -11,8 +11,8 @@ function Movies() {
     const [items, setItems] = useState([]);
 
     useEffect(() => {
-        // Change to /api/movies after development
-        fetch("http://localhost:4000/movies")
+        // Change "/api/movies" to "http://localhost:4000/movies" on local
+        fetch("/api/movies")
         .then(res => res.json())
         .then(
             (result) => {
@@ -33,9 +33,9 @@ function Movies() {
     } else {
         return (
           <Container className='body'>
-            <Row xs={1} md={2} className="g-4" style={{marginTop: '10px'}}>
+            <Row s={1} md={2} className="g-4" style={{marginTop: '10px'}}>
                 {items.map(element => {
-                    return <Col key={'col'+element.id}><MediaCard key={element.id} data={element}/></Col>
+                    return <Col key={'col'+element.id}><MediaCard key={element.id} data={element} type={'movie'}/></Col>
                 })}
             </Row>
           </Container>

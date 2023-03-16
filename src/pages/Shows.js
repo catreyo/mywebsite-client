@@ -11,7 +11,7 @@ function Shows() {
     const [items, setItems] = useState();
 
     useEffect(() => {
-        // Change to /api/shows after development
+        // Change "/api/shows" to "http://localhost:4000/shows" on local
         fetch("/api/shows")
         .then(res => res.json())
         .then(
@@ -32,13 +32,13 @@ function Shows() {
         return <Container className='body'>Loading...</Container>;
     } else {
         return (
-          <Container className='body'>
-            <Row xs={1} md={2} className="g-4" style={{marginTop: '10px'}}>
-                {items.map(element => {
-                    return <Col key={'col'+element.id}><MediaCard key={element.id} data={element}/></Col>
-                })}
-            </Row>
-          </Container>
+            <Container className='body'>
+              <Row s={1} md={2} className="g-4" style={{marginTop: '10px'}}>
+                  {items.map(element => {
+                      return <Col key={'col'+element.id}><MediaCard key={element.id} data={element} type={'tv'}/></Col>
+                  })}
+              </Row>
+            </Container>
         );
     }
 }
