@@ -52,7 +52,7 @@ function MediaCard({ data, type }) {
                     <Card.Title>{movieData.title}</Card.Title>
                     <hr></hr>
                     <Card.Text style={{color: '#c5c7c9'}}>
-                        Overall score: <strong>{data.score.toFixed(2)}</strong>/10
+                        Overall score: <strong>{parseFloat(data.score.toFixed(2))}</strong>/10
                     </Card.Text>
                     <Card.Text style={{color: '#a4a5a6', fontSizeAdjust: '0.5'}}>
                         Visual sub-score: <strong>{data.visuals}</strong>/10<br/>
