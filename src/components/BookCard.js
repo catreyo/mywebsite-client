@@ -19,11 +19,11 @@ function MovieCard({ data }) {
                 <Card.Subtitle style={{fontStyle: 'italic', fontSize: '90%'}}>{data.author}</Card.Subtitle>
                 <hr></hr>
                 <Card.Text style={{color: '#a4a5a6'}}>I rate this book a {data.rating}/10:</Card.Text>
-                <StarRatingComponent
-                    name = {data.title}
-                    editing = {false}
-                    starCount = {10}
-                    value = {data.rating}
+                <Rating
+                    readonly={true}
+                    initialRating={data.rating}
+                    stop={10}
+                    fractions={1}
                 />
             </Card.Body>
         </Card>
